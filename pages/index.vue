@@ -1,73 +1,42 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        leon0399-site
-      </h1>
-      <h2 class="subtitle">
-        Protfolio Website
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div id="intro" class="intro flex items-center">
+    <div
+      class="h-full container mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between"
+    >
+      <div
+        class="intro__pathos w-100 lg:w-1/2 px-4 text-center lg:text-right font-montserrat font-bold text-white text-5xl"
+      >
+        <span class="intro__iam">I am the</span>
+        <br />
+        <span class="intro__title">Developer.</span>
+      </div>
+      <div class="intro__rose w-100 lg:w-1/2 px-4">
+        <img src="~/assets/img/flower.gif" alt="Glitched flower" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
-export default {
-  components: {
-    Logo
-  }
-}
+export default {}
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss">
+.intro {
+  @apply bg-dark;
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  min-height: calc(100vh - 100px);
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+  &__pathos {
+    @screen lg {
+      font-size: 6rem;
+    }
+  }
 
-.links {
-  padding-top: 15px;
+  &__rose {
+    img {
+      mix-blend-mode: lighten;
+    }
+  }
 }
 </style>
