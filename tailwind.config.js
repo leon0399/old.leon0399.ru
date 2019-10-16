@@ -16,7 +16,22 @@ module.exports = {
         light: '#E5E5E5'
       },
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif']
+        montserrat: ['Montserrat', 'sans-serif'],
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Open Sans"',
+          '"Segoe UI"',
+          'Roboto',
+          '"Helvetica Neue"',
+          'Arial',
+          '"Noto Sans"',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
       }
     }
   },
