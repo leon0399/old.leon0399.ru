@@ -1,5 +1,5 @@
 <template>
-  <div id="intro" class="intro flex items-center">
+  <div id="intro" class="intro relative flex items-center">
     <div
       class="h-full container mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between"
     >
@@ -14,11 +14,16 @@
         <img src="~/assets/img/flower.gif" alt="Glitched flower" />
       </div>
     </div>
+
+    <diagonal position="bottom" color="light" />
   </div>
 </template>
 
 <script>
-export default {}
+import Diagonal from '../components/app/Diagonal'
+export default {
+  components: { Diagonal }
+}
 </script>
 
 <style lang="scss">
