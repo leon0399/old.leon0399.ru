@@ -1,1 +1,15 @@
+.glitch {
+  &--text {
+    background: url("../img/glitch-corrupt.gif");
 
+    -webkit-text-fill-color: transparent;
+       -moz-text-fill-color: transparent;
+         -o-text-fill-color: transparent;
+            text-fill-color: transparent;
+
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+         -o-background-clip: text;
+            background-clip: text;
+  }
+}

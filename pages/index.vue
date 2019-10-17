@@ -12,7 +12,7 @@
         <div
           class="intro__pathos w-100 lg:w-1/2 px-4 text-center lg:text-right font-montserrat font-bold text-white text-5xl"
         >
-          <span class="intro__iam">I am the</span>
+          <span class="intro__iam glitch--text">I am the</span>
           <br />
           <span class="intro__title">Developer.</span>
         </div>
@@ -78,7 +78,7 @@
 
       <div class="cases__items flex overflow-x-auto scrolling-touch">
         <div
-          class="cases__items-shadow w-full whitespace-no-wrap flex lg:justify-center"
+          class="cases__items-shadow mx-auto whitespace-no-wrap flex justify-start "
         >
           <component
             :is="_case.component ? _case.component : 'base-case-item-card'"
