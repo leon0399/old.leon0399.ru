@@ -68,13 +68,37 @@
         </div>
       </div>
     </v-section>
+
+    <v-section id="cases" class="cases relative">
+      <v-section-heading
+        class="container mx-auto"
+        title="Cases"
+        sub-title="Things, I'm proud"
+      />
+
+      <div class="cases__items flex overflow-x-auto scrolling-touch">
+        <div
+          class="cases__items-shadow w-full whitespace-no-wrap flex lg:justify-center"
+        >
+          <component
+            :is="_case.component ? _case.component : 'base-case-item-card'"
+            v-for="(_case, index) in cases"
+            :key="'case-' + index"
+            style="min-height: 440px"
+          ></component>
+        </div>
+      </div>
+    </v-section>
   </div>
 </template>
 
 <script>
-import VSection from '../components/app/VSection'
+import VSection from '../components/section/VSection'
+import VSectionHeading from '../components/section/VSectionHeading'
+import BaseCaseItemCard from '../components/cases/BaseCaseItemCard'
+
 export default {
-  components: { VSection },
+  components: { VSectionHeading, VSection, BaseCaseItemCard },
   data: () => ({
     contactMethods: {
       mail: {
@@ -93,6 +117,12 @@ export default {
         text: 'Facebook',
         href: 'https://fb.me/meleshin.l'
       }
+    },
+    cases: {
+      first: {},
+      second: {},
+      third: {},
+      fourth: {}
     }
   })
 }
@@ -113,6 +143,33 @@ export default {
   &__rose {
     img {
       mix-blend-mode: lighten;
+    }
+  }
+}
+
+.cases {
+  &__items {
+    margin-top: -100px;
+    margin-bottom: -140px;
+
+    .case--card {
+      margin-right: 15px;
+      margin-left: 15px;
+
+      min-width: 300px;
+    }
+  }
+
+  &__items-shadow {
+    padding-top: 100px;
+    padding-bottom: 140px;
+
+    -ms-overflow-style: none; // IE 10+
+    scrollbar-width: none; // Firefox
+    &::-webkit-scrollbar {
+      display: none; // Safari and Chrome
+      width: 0;
+      height: 0;
     }
   }
 }

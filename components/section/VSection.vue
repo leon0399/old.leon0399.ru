@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Diagonal from './Diagonal'
+import Diagonal from '../app/Diagonal'
 
 export default {
   name: 'Section',
