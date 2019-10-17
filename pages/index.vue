@@ -77,14 +77,11 @@
       />
 
       <div class="cases__items flex overflow-x-auto scrolling-touch">
-        <div
-          class="cases__items-shadow mx-auto whitespace-no-wrap flex justify-start "
-        >
+        <div class="cases__items-shadow mx-auto flex justify-start ">
           <component
             :is="_case.component ? _case.component : 'base-case-item-card'"
             v-for="(_case, index) in cases"
             :key="'case-' + index"
-            style="min-height: 440px"
           ></component>
         </div>
       </div>
@@ -95,7 +92,9 @@
 <script>
 import VSection from '../components/section/VSection'
 import VSectionHeading from '../components/section/VSectionHeading'
+
 import BaseCaseItemCard from '../components/cases/BaseCaseItemCard'
+import CaseAptekaItemCard from '../components/cases/CaseAptekaItemCard'
 
 export default {
   components: { VSectionHeading, VSection, BaseCaseItemCard },
@@ -120,7 +119,9 @@ export default {
     },
     cases: {
       first: {},
-      second: {},
+      second: {
+        component: CaseAptekaItemCard
+      },
       third: {},
       fourth: {}
     }
@@ -156,7 +157,7 @@ export default {
       margin-right: 15px;
       margin-left: 15px;
 
-      min-width: 300px;
+      width: 283px;
     }
   }
 
