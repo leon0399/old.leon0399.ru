@@ -14,7 +14,14 @@
         >
           <span class="intro__iam glitch--text">I am the</span>
           <br />
-          <span class="intro__title">Developer.</span>
+          <no-ssr>
+            <vue-typer
+              :text="['Developer.', 'Designer.']"
+              class="intro__title text-white"
+              erase-delay="70"
+              erase-style="backspace"
+            ></vue-typer>
+          </no-ssr>
         </div>
         <div class="intro__rose w-100 lg:w-1/2 px-4">
           <img src="~/assets/img/flower.gif" alt="Glitched flower" />
@@ -77,13 +84,47 @@
       />
 
       <div class="cases__items flex overflow-x-auto scrolling-touch">
-        <div class="cases__items-shadow mx-auto flex justify-start ">
+        <div class="cases__items-shadow mx-auto flex justify-start z-50">
           <component
             :is="_case.component ? _case.component : 'base-case-item-card'"
             v-for="(_case, index) in cases"
             :key="'case-' + index"
           ></component>
         </div>
+      </div>
+    </v-section>
+
+    <v-section
+      id="jobs"
+      class="jobs bg-dark z-10"
+      divider-top-color="white"
+      no-diagonal-padding-top
+    >
+      <div class="container mx-auto">
+        <timeline class="border-white lg:w-1/2">
+          <timeline-item
+            v-for="(job, index) in jobs"
+            :key="'job-' + index"
+            class="text-white"
+          >
+            <h3 class="font-montserrat font-extrabold text-lg">
+              {{ job.position }} <span class="text-gray-500">at</span>
+              <a :href="job.website" target="_blank" class="text-primary">
+                {{ job.place }}
+              </a>
+            </h3>
+            <span class="text-sm text-gray-500">
+              {{ job.duration }}
+            </span>
+            <p
+              v-for="(p, pIndex) in job.description"
+              :key="'job-' + index + '-p-' + pIndex"
+              class="text-sm"
+            >
+              {{ p }}
+            </p>
+          </timeline-item>
+        </timeline>
       </div>
     </v-section>
   </div>
@@ -96,8 +137,23 @@ import VSectionHeading from '../components/section/VSectionHeading'
 import BaseCaseItemCard from '../components/cases/BaseCaseItemCard'
 import CaseAptekaItemCard from '../components/cases/CaseAptekaItemCard'
 
+import Timeline from '../components/timeline/Timeline'
+import TimelineItem from '../components/timeline/TimelineItem'
+
+let VueTyper = null
+if (process.browser) {
+  VueTyper = require('vue-typer').VueTyper
+}
+
 export default {
-  components: { VSectionHeading, VSection, BaseCaseItemCard },
+  components: {
+    VueTyper,
+    Timeline,
+    TimelineItem,
+    VSection,
+    VSectionHeading,
+    BaseCaseItemCard
+  },
   data: () => ({
     contactMethods: {
       mail: {
@@ -112,7 +168,7 @@ export default {
         text: 'VK',
         href: 'https://vk.com/leon0399'
       },
-      Facebook: {
+      facebook: {
         text: 'Facebook',
         href: 'https://fb.me/meleshin.l'
       }
@@ -124,6 +180,44 @@ export default {
       },
       third: {},
       fourth: {}
+    },
+    jobs: {
+      explabs: {
+        position: 'Founder & CEO',
+        place: 'Explabs Web',
+        website: 'https://explabs.ru/web',
+        duration: 'March 2019 — Present',
+        description: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+        ]
+      },
+      codecomrade: {
+        position: 'Developer',
+        place: 'Codecomrade',
+        website: 'https://codecomrade.net/',
+        duration: 'August 2018 — March 2019',
+        description: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+        ]
+      },
+      va: {
+        position: 'Developer',
+        place: '#VA',
+        website: 'https://va-promotion.ru/',
+        duration: 'October 2017 — August 2018',
+        description: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+        ]
+      },
+      amska: {
+        position: 'Developer',
+        place: 'AMSKA',
+        website: 'http://amska.ru/',
+        duration: 'November 2016 — January 2017',
+        description: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+        ]
+      }
     }
   })
 }
@@ -138,6 +232,18 @@ export default {
 
     @screen lg {
       font-size: 6rem;
+    }
+
+    .vue-typer {
+      .custom {
+        &.char {
+          @apply text-white;
+        }
+
+        &.caret {
+          @apply bg-white;
+        }
+      }
     }
   }
 
@@ -172,6 +278,16 @@ export default {
       width: 0;
       height: 0;
     }
+  }
+}
+
+.jobs {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  .timeline {
+    padding-top: calc(8rem + 40px);
+    padding-bottom: 8rem;
   }
 }
 </style>

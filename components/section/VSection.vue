@@ -57,7 +57,7 @@ export default {
 
 <style scoped lang="scss">
 .section {
-  @apply py-16;
+  @apply py-16 relative;
 
   &--diagonal-bottom {
     padding-bottom: calc(4rem + 40px);
