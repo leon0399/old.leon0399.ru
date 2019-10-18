@@ -1,0 +1,12 @@
+image: node:dubnium
+
+pages:
+  script:
+    - yarn install
+    - yarn generate
+    - mv dist/ public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
