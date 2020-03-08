@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .diagonal {
   width: 0;
   height: 0;
@@ -33,6 +33,14 @@ export default {
   z-index: 100;
 
   --height: 40px;
+
+  @screen md {
+    --height: 80px;
+  }
+
+  @screen lg {
+    --height: 100px;
+  }
 
   &--bottom {
     bottom: 0;
