@@ -167,9 +167,9 @@ export default {
         text: 'VK',
         href: 'https://vk.com/leon0399'
       },
-      facebook: {
-        text: 'Facebook',
-        href: 'https://fb.me/meleshin.l'
+      github: {
+        text: 'Github',
+        href: 'https://github.com/leon0399'
       }
     },
     cases: {
