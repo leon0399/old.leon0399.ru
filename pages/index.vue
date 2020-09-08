@@ -43,15 +43,14 @@
 
           <p class="pb-4">
             My name is <strong>Leonid Meleshin</strong> and I am a
-            <strong>Web Developer</strong> and
-            <strong>Designer</strong> currently based
+            <strong>Fullstack Developer</strong> currently based
             <strong class="text-primary">Moscow, Russia</strong>.
           </p>
 
           <p class="pb-4">
-            I really enjoy developing <strong>useful</strong>,
-            <strong>powerful</strong> and
-            <strong>beautiful</strong> applications.
+            I really enjoy developing 💡 <strong>useful</strong> 💡,
+            💪 <strong>powerful</strong> 💪 and
+            ✨ <strong>beautiful</strong> ✨ applications.
           </p>
 
           <p class="pb-4">
@@ -219,7 +218,12 @@ export default {
         ]
       }
     }
-  })
+  }),
+  head() {
+    return {
+      title: 'Leonid Meleshin'
+    }
+  }
 }
 </script>
 
