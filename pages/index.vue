@@ -183,12 +183,12 @@ export default {
     },
     jobs: {
       explabs: {
-        position: 'Founder & CEO',
-        place: 'Explabs Web',
-        website: 'https://explabs.ru/web',
+        position: 'Founder',
+        place: 'Devolt.One',
+        website: 'https://devolt.one/?ref=leon0399',
         duration: 'March 2019 — Present',
         description: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+          'Own development studio management. Turnkey websites and custom-built CRM systems development using Laravel and Vue.js/Nuxt.js.'
         ]
       },
       codecomrade: {
@@ -197,7 +197,7 @@ export default {
         website: 'https://codecomrade.net/',
         duration: 'August 2018 — March 2019',
         description: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+          'Custom CRM Development for a major government customer (NDA) using Laravel and Vue.js.'
         ]
       },
       va: {
@@ -206,7 +206,7 @@ export default {
         website: 'https://va-promotion.ru/',
         duration: 'October 2017 — August 2018',
         description: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+          'Turnkey websites Development on Wordpress and Laravel. Theme development, layout and integration.'
         ]
       },
       amska: {
@@ -215,7 +215,7 @@ export default {
         website: 'http://amska.ru/',
         duration: 'November 2016 — January 2017',
         description: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper gravida urna, faucibus suspendisse. Est nec sed ipsum diam vitae ut blandit convallis. Pretium lectus urna morbi a ornare quam facilisi velit nunc. Sem eget lacus commodo nunc.'
+          '1С Websites content and integration'
         ]
       }
     }
