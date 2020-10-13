@@ -184,8 +184,8 @@ export default {
       explabs: {
         position: 'Founder',
         place: 'Devolt.One',
-        website: 'https://devolt.one/?ref=leon0399',
-        duration: 'March 2019 — Present',
+        website: 'https://devolt.one/?ref=leon0399.ru',
+        duration: 'March 2019 — August 2020',
         description: [
           'Own development studio management. Turnkey websites and custom-built CRM systems development using Laravel and Vue.js/Nuxt.js.'
         ]
