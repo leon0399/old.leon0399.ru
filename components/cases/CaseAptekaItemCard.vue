@@ -24,17 +24,19 @@
         />
       </div>
       <div>
-        <img
-          src="@/assets/img/cases/apteka149/apteka149-logo.svg"
-          alt="Project Logo"
-        />
+        <a href="https://apteka149.ru/">
+          <img
+            src="@/assets/img/cases/apteka149/apteka149-logo.svg"
+            alt="Project Logo"
+          />
+        </a>
       </div>
       <div>
         <p class="text-center">
           Pharmacy network website <strong>Design</strong> and
           <strong>Development</strong> at
-          <a href="https://explabs.ru/web" target="_blank" style="text-primary">
-            <strong>Explabs</strong>
+          <a href="https://devolt.one/projects/apteka149/?ref=leon0399.ru" target="_blank" style="text-primary">
+            <strong class="font-montserrat font-black">D.1</strong>
           </a>
         </p>
       </div>
