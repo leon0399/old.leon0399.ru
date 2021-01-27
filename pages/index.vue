@@ -2,28 +2,28 @@
   <div id="index">
     <v-section
       id="intro"
-      class="intro bg-dark relative flex items-center"
+      class="relative flex items-center intro bg-dark"
       divider-bottom-color="light"
       no-diagonal-padding-bottom
     >
       <div
-        class="h-full container mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between"
+        class="container flex flex-col items-center justify-center h-full mx-auto lg:flex-row lg:justify-between"
       >
         <div
-          class="intro__pathos w-100 lg:w-1/2 px-4 text-center lg:text-right font-montserrat font-bold text-white text-5xl"
+          class="px-4 text-5xl font-bold text-center text-white intro__pathos w-100 lg:w-1/2 lg:text-right font-montserrat"
         >
           <span class="intro__iam glitch--text">I am the</span>
           <br />
           <no-ssr>
             <vue-typer
               :text="['Developer.', 'Designer.']"
-              class="intro__title text-white"
+              class="text-white intro__title"
               erase-delay="70"
               erase-style="backspace"
             ></vue-typer>
           </no-ssr>
         </div>
-        <div class="intro__rose w-100 lg:w-1/2 px-4">
+        <div class="px-4 intro__rose w-100 lg:w-1/2">
           <img src="~/assets/img/flower.gif" alt="Glitched flower" />
         </div>
       </div>
@@ -31,13 +31,13 @@
 
     <v-section
       id="about"
-      class="about bg-light relative"
+      class="relative about bg-light"
       divider-bottom-color="white"
       large
     >
-      <div class="container mx-auto flex justify-start">
+      <div class="container flex justify-start mx-auto">
         <div class="w-100 lg:w-2/3">
-          <h1 class="font-montserrat font-extrabold text-5xl pb-2">
+          <h1 class="pb-2 text-5xl font-extrabold font-montserrat">
             Hello there!
           </h1>
 
@@ -48,9 +48,9 @@
           </p>
 
           <p class="pb-4">
-            I really enjoy developing 💡 <strong>useful</strong> 💡,
-            💪 <strong>powerful</strong> 💪 and
-            ✨ <strong>beautiful</strong> ✨ applications.
+            I really enjoy developing 💡 <strong>useful</strong> 💡, 💪
+            <strong>powerful</strong> 💪 and ✨ <strong>beautiful</strong> ✨
+            applications.
           </p>
 
           <p class="pb-4">
@@ -64,7 +64,7 @@
             <li
               v-for="(method, index) in contactMethods"
               :key="'contact-' + index"
-              class="inline-block py-4 px-2"
+              class="inline-block px-2 py-4"
             >
               <a :href="method.href" target="_blank" class="text-primary">
                 {{ method.text }}
@@ -75,15 +75,15 @@
       </div>
     </v-section>
 
-    <v-section id="cases" class="cases relative">
+    <v-section id="cases" class="relative cases">
       <v-section-heading
         class="container mx-auto"
         title="Cases"
         sub-title="Things, I'm proud"
       />
 
-      <div class="cases__items flex overflow-x-auto scrolling-touch">
-        <div class="cases__items-shadow mx-auto flex justify-start z-50">
+      <div class="flex overflow-x-auto scrolling-touch cases__items">
+        <div class="z-50 flex justify-start mx-auto cases__items-shadow">
           <component
             :is="_case.component ? _case.component : 'base-case-item-card'"
             v-for="(_case, index) in cases"
@@ -95,7 +95,7 @@
 
     <v-section
       id="jobs"
-      class="jobs bg-dark z-10"
+      class="z-10 jobs bg-dark"
       divider-top-color="white"
       no-diagonal-padding-top
     >
@@ -106,7 +106,7 @@
             :key="'job-' + index"
             class="text-white"
           >
-            <h3 class="font-montserrat font-extrabold text-lg">
+            <h3 class="text-lg font-extrabold font-montserrat">
               {{ job.position }} <span class="text-gray-500">at</span>
               <a :href="job.website" target="_blank" class="text-primary">
                 {{ job.place }}
@@ -181,6 +181,13 @@ export default {
       fourth: {}
     },
     jobs: {
+      innoscripta: {
+        position: 'Fullstack Developer',
+        place: 'Innoscripta',
+        website: 'https://www.innoscripta.com/',
+        duration: 'November 2020 — Present',
+        description: []
+      },
       explabs: {
         position: 'Founder',
         place: 'Devolt.One',
@@ -213,9 +220,7 @@ export default {
         place: 'AMSKA',
         website: 'http://amska.ru/',
         duration: 'November 2016 — January 2017',
-        description: [
-          '1С Websites content and integration'
-        ]
+        description: ['1С Websites content and integration']
       }
     }
   }),

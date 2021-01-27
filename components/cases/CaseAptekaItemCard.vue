@@ -1,6 +1,6 @@
 <template>
   <base-case-item-card class="case--apteka">
-    <div class="flex flex-col justify-end h-full w-full">
+    <div class="flex flex-col justify-end w-full h-full">
       <div class="case__illustration">
         <img
           src="@/assets/img/cases/apteka149/hope.png"
@@ -35,8 +35,11 @@
         <p class="text-center">
           Pharmacy network website <strong>Design</strong> and
           <strong>Development</strong> at
-          <a href="https://devolt.one/projects/apteka149/?ref=leon0399.ru" target="_blank" style="text-primary">
-            <strong class="font-montserrat font-black">D.1</strong>
+          <a
+            href="https://devolt.one/projects/apteka149/?ref=leon0399.ru"
+            target="_blank"
+          >
+            <strong class="font-black font-montserrat">D.1</strong>
           </a>
         </p>
       </div>
