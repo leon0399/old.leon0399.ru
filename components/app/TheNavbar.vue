@@ -1,12 +1,13 @@
 <template>
   <nav :class="['navbar', 'flex', 'py-6', backgroundColor]">
-    <div class="container mx-auto w-full flex items-center justify-between">
+    <div class="container flex items-center justify-between w-full mx-auto">
       <div class="flex">
-        <span
+        <nuxt-link
+          to="/"
           :class="['font-montserrat', 'font-extrabold', textColor, 'text-2xl']"
         >
           L/M
-        </span>
+        </nuxt-link>
       </div>
     </div>
   </nav>

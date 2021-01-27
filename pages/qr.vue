@@ -2,7 +2,7 @@
   <div class="qr qr--right">
     <section
       id="intro"
-      class="relative flex items-center py-32 text-white intro bg-dark"
+      class="relative flex items-center py-32 text-white bg-dark"
     >
       <div class="container flex justify-start mx-auto">
         <div class="w-100 lg:w-2/3">
