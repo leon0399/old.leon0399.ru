@@ -12,7 +12,7 @@
         <div
           class="px-4 text-5xl font-bold text-center text-white intro__pathos w-100 lg:w-1/2 lg:text-right font-montserrat"
         >
-          <span class="intro__iam glitch--text">I am the</span>
+          <span class="intro__iam glitch-text">I am the</span>
           <br />
           <no-ssr>
             <vue-typer
@@ -88,6 +88,7 @@
             :is="_case.component ? _case.component : 'base-case-item-card'"
             v-for="(_case, index) in cases"
             :key="'case-' + index"
+            :empty="!_case.component"
           ></component>
         </div>
       </div>

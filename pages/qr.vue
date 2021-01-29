@@ -12,6 +12,11 @@
           </p>
 
           <p class="my-4">
+            Feel free to befriend me on any social network or add me to your
+            contact list.
+          </p>
+
+          <p class="my-4">
             I hope nothing bad happend, but anyway, there is some useful info
             below.
           </p>
