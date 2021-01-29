@@ -162,7 +162,7 @@ export default {
       },
       telegram: {
         text: 'Telegram',
-        href: 'https://tg.me/leon0399'
+        href: 'https://t.me/leon0399'
       },
       vk: {
         text: 'VK',

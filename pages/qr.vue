@@ -93,7 +93,7 @@ export default {
       },
       telegram: {
         text: 'Telegram',
-        href: 'https://tg.me/leon0399'
+        href: 'https://t.me/leon0399'
       },
       vk: {
         text: 'Instagram',
@@ -101,7 +101,7 @@ export default {
       },
       github: {
         text: 'LinkedIn',
-        href: 'https://linkedin.com/leon0399'
+        href: 'https://www.linkedin.com/in/leonid-meleshin-9604111a9/'
       }
     }
   }),
