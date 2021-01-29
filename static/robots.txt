@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /vcard.vcf
+Disallow: /qr
+Disallow: /qr.html
+Disallow: /qr/

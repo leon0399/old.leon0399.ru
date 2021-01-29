@@ -1,6 +1,6 @@
 <template>
   <div class="qr qr--right">
-    <section id="intro" class="items-center text-white bg-dark md:relative">
+    <section id="intro" class="items-center text-white md:relative">
       <div class="container flex flex-col justify-start mx-auto md:flex-row">
         <div class="py-12 mt-64 w-100 lg:w-2/3 md:mt-0">
           <h1 class="my-2 text-5xl font-extrabold">
@@ -8,8 +8,7 @@
           </h1>
 
           <p class="my-4">
-            Thank you for scanning my hand! My name is
-            <strong>Leonid Meleshin</strong>.
+            Welcome to my hand! My name is <strong>Leonid Meleshin</strong>.
           </p>
 
           <p class="my-4">
@@ -42,6 +41,11 @@
         >
           <img
             src="~/assets/img/hand.png"
+            srcset="
+              @/assets/img/hand.png    1x,
+              @/assets/img/hand@2x.png 2x,
+              @/assets/img/hand@3x.png 3x
+            "
             class="absolute top-0 transform md:relative hand__image h-96 md:top-auto md:bottom-0 md:rotate-180 md:h-auto"
             alt="Hand"
           />
@@ -53,7 +57,7 @@
         <div
           class="flex flex-row text-4xl font-bold text-center border-4 border-white md:w-1/2 xl:w-1/3"
         >
-          <div class="flex-1 px-8 py-4 border-r-4 border-white">O(I)</div>
+          <div class="flex-1 px-8 py-4 border-r-4 border-white">0(I)</div>
           <div class="px-8 py-4">Rh+</div>
         </div>
         <div class="md:w-1/2">
@@ -97,7 +101,10 @@ export default {
     }
   }),
   head: {
-    title: 'My right hand'
+    title: 'My right hand',
+    htmlAttrs: {
+      class: 'bg-dark'
+    }
   }
 }
 </script>
