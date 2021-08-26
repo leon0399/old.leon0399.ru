@@ -184,9 +184,9 @@ export default {
     jobs: {
       innoscripta: {
         position: 'Fullstack Developer',
-        place: 'Innoscripta',
+        place: 'innoscripta GmbH',
         website: 'https://www.innoscripta.com/',
-        duration: 'November 2020 — Present',
+        duration: 'October 2020 — Present',
         description: []
       },
       explabs: {
