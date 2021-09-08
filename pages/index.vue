@@ -128,6 +128,7 @@ import VSection from '../components/section/VSection'
 import VSectionHeading from '../components/section/VSectionHeading'
 
 import BaseCaseItemCard from '../components/cases/BaseCaseItemCard'
+import CaseDevoltOneItemCard from '../components/cases/CaseDevoltOneItemCard'
 import CaseAptekaItemCard from '../components/cases/CaseAptekaItemCard'
 
 import Timeline from '../components/timeline/Timeline'
@@ -171,7 +172,9 @@ export default {
       }
     },
     cases: {
-      first: {},
+      first: {
+        component: CaseDevoltOneItemCard
+      },
       second: {
         component: CaseAptekaItemCard
       },
