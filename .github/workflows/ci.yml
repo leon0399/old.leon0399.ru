@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14]
+        node: [12, 14]
 
     steps:
       - name: Checkout 🛎
@@ -38,11 +38,17 @@ jobs:
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ matrix.node }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-node-${{ matrix.node }}-yarn-
+
       - name: Install dependencies 👨🏻‍💻
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: Run linter 👀
         run: yarn lint
+
+      - name: Build project 🔨
+        run: |
+          yarn build --target static
+          yarn export
