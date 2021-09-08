@@ -23,7 +23,7 @@
           alt="Empathy"
         />
       </div>
-      <div>
+      <div class="my-4">
         <a href="https://apteka149.ru/">
           <img
             src="@/assets/img/cases/apteka149/apteka149-logo.svg"

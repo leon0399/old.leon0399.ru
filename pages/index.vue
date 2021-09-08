@@ -16,9 +16,9 @@
           <br />
           <no-ssr>
             <vue-typer
-              :text="['Developer.', 'Designer.']"
+              :text="['Developer.', 'Engineer.']"
               class="text-white intro__title"
-              erase-delay="70"
+              :erase-delay="70"
               erase-style="backspace"
             ></vue-typer>
           </no-ssr>
@@ -51,13 +51,6 @@
             I really enjoy developing 💡 <strong>useful</strong> 💡, 💪
             <strong>powerful</strong> 💪 and ✨ <strong>beautiful</strong> ✨
             applications.
-          </p>
-
-          <p class="pb-4">
-            Also, I’m a <strong>Pentester</strong> (widely known as
-            <strong>Hacker</strong>), so I create not only cool looking
-            projects, but also safe ones.
-            <a href="#" class="text-primary">Read more...</a>
           </p>
 
           <ul>
@@ -156,21 +149,25 @@ export default {
   },
   data: () => ({
     contactMethods: {
-      mail: {
-        text: 'Mail',
-        href: 'mailto:leon.03.99@gmail.com'
-      },
       telegram: {
         text: 'Telegram',
         href: 'https://t.me/leon0399'
+      },
+      linkedin: {
+        text: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/leonid-meleshin-9604111a9/'
+      },
+      github: {
+        text: 'Github',
+        href: 'https://github.com/leon0399'
       },
       vk: {
         text: 'VK',
         href: 'https://vk.com/leon0399'
       },
-      github: {
-        text: 'Github',
-        href: 'https://github.com/leon0399'
+      mail: {
+        text: 'Mail',
+        href: 'mailto:leon.03.99@gmail.com'
       }
     },
     cases: {
