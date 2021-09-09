@@ -4,7 +4,15 @@
       class="block absolute w-full h-1/3 case__half bottom-0 inset-x-0 z-0"
     /> -->
     <div
-      class="case__content relative flex flex-col justify-end w-full h-full z-10"
+      class="
+        case__content
+        relative
+        flex flex-col
+        justify-end
+        w-full
+        h-full
+        z-10
+      "
     >
       <div class="case__illustration relative h-full">
         <div class="floating-card floating-card--primary">
@@ -36,7 +44,7 @@
 import BaseCaseItemCard from './BaseCaseItemCard'
 export default {
   name: 'CaseDevoltOneItemCard',
-  components: { BaseCaseItemCard }
+  components: { BaseCaseItemCard },
 }
 </script>
 

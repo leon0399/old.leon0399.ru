@@ -7,10 +7,27 @@
       no-diagonal-padding-bottom
     >
       <div
-        class="container flex flex-col items-center justify-center h-full mx-auto lg:flex-row lg:justify-between"
+        class="
+          container
+          flex flex-col
+          items-center
+          justify-center
+          h-full
+          mx-auto
+          lg:flex-row lg:justify-between
+        "
       >
         <div
-          class="px-4 text-5xl font-bold text-center text-white intro__pathos w-100 lg:w-1/2 lg:text-right font-montserrat"
+          class="
+            px-4
+            text-5xl
+            font-bold
+            text-center text-white
+            intro__pathos
+            w-100
+            lg:w-1/2 lg:text-right
+            font-montserrat
+          "
         >
           <span class="intro__iam glitch-text">I am the</span>
           <br />
@@ -146,40 +163,40 @@ export default {
     TimelineItem,
     VSection,
     VSectionHeading,
-    BaseCaseItemCard
+    BaseCaseItemCard,
   },
   data: () => ({
     contactMethods: {
       telegram: {
         text: 'Telegram',
-        href: 'https://t.me/leon0399'
+        href: 'https://t.me/leon0399',
       },
       linkedin: {
         text: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/leonid-meleshin-9604111a9/'
+        href: 'https://www.linkedin.com/in/leonid-meleshin-9604111a9/',
       },
       github: {
         text: 'Github',
-        href: 'https://github.com/leon0399'
+        href: 'https://github.com/leon0399',
       },
       vk: {
         text: 'VK',
-        href: 'https://vk.com/leon0399'
+        href: 'https://vk.com/leon0399',
       },
       mail: {
         text: 'Mail',
-        href: 'mailto:leon.03.99@gmail.com'
-      }
+        href: 'mailto:leon.03.99@gmail.com',
+      },
     },
     cases: {
       first: {
-        component: CaseDevoltOneItemCard
+        component: CaseDevoltOneItemCard,
       },
       second: {
-        component: CaseAptekaItemCard
+        component: CaseAptekaItemCard,
       },
       third: {},
-      fourth: {}
+      fourth: {},
     },
     jobs: {
       innoscripta: {
@@ -187,7 +204,7 @@ export default {
         place: 'innoscripta GmbH',
         website: 'https://www.innoscripta.com/',
         duration: 'October 2020 — Present',
-        description: []
+        description: [],
       },
       explabs: {
         position: 'Founder',
@@ -195,8 +212,8 @@ export default {
         website: 'https://devolt.one/?ref=leon0399.ru',
         duration: 'March 2019 — August 2020',
         description: [
-          'Own development studio management. Turnkey websites and custom-built CRM systems development using Laravel and Vue.js/Nuxt.js.'
-        ]
+          'Own development studio management. Turnkey websites and custom-built CRM systems development using Laravel and Vue.js/Nuxt.js.',
+        ],
       },
       codecomrade: {
         position: 'Developer',
@@ -204,8 +221,8 @@ export default {
         website: 'https://codecomrade.net/',
         duration: 'August 2018 — March 2019',
         description: [
-          'Custom CRM Development for a major government customer (NDA) using Laravel and Vue.js.'
-        ]
+          'Custom CRM Development for a major government customer (NDA) using Laravel and Vue.js.',
+        ],
       },
       va: {
         position: 'Developer',
@@ -213,23 +230,23 @@ export default {
         website: 'https://va-promotion.ru/',
         duration: 'October 2017 — August 2018',
         description: [
-          'Turnkey websites Development on Wordpress and Laravel. Theme development, layout and integration.'
-        ]
+          'Turnkey websites Development on Wordpress and Laravel. Theme development, layout and integration.',
+        ],
       },
       amska: {
         position: 'Developer',
         place: 'AMSKA',
         website: 'http://amska.ru/',
         duration: 'November 2016 — January 2017',
-        description: ['1С Websites content and integration']
-      }
-    }
+        description: ['1С Websites content and integration'],
+      },
+    },
   }),
   head() {
     return {
-      title: 'Leonid Meleshin'
+      title: 'Leonid Meleshin',
     }
-  }
+  },
 }
 </script>
 

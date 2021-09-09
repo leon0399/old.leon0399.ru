@@ -3,9 +3,7 @@
     <section id="intro" class="items-center text-white md:relative">
       <div class="container flex flex-col justify-start mx-auto md:flex-row">
         <div class="py-12 mt-64 w-100 lg:w-2/3 md:mt-0">
-          <h1 class="my-2 text-5xl font-extrabold">
-            Wow! You scanned me?
-          </h1>
+          <h1 class="my-2 text-5xl font-extrabold">Wow! You scanned me?</h1>
 
           <p class="my-4">
             Welcome to my hand! My name is <strong>Leonid Meleshin</strong>.
@@ -23,7 +21,17 @@
 
           <a
             href="/vcard.vcf"
-            class="inline-flex justify-center w-full px-6 py-3 my-8 text-center text-white bg-primary md:w-auto"
+            class="
+              inline-flex
+              justify-center
+              w-full
+              px-6
+              py-3
+              my-8
+              text-center text-white
+              bg-primary
+              md:w-auto
+            "
           >
             Add to contacts
           </a>
@@ -42,7 +50,13 @@
         </div>
 
         <div
-          class="flex flex-col items-center justify-center md:justify-end hand hand--mobile"
+          class="
+            flex flex-col
+            items-center
+            justify-center
+            md:justify-end
+            hand hand--mobile
+          "
         >
           <img
             src="~/assets/img/hand.png"
@@ -51,7 +65,15 @@
               @/assets/img/hand@2x.png 2x,
               @/assets/img/hand@3x.png 3x
             "
-            class="absolute top-0 transform md:relative hand__image h-96 md:top-auto md:bottom-0 md:rotate-180 md:h-auto"
+            class="
+              absolute
+              top-0
+              transform
+              md:relative
+              hand__image
+              h-96
+              md:top-auto md:bottom-0 md:rotate-180 md:h-auto
+            "
             alt="Hand"
           />
         </div>
@@ -60,7 +82,15 @@
     <section id="emergency" class="py-6 emergency">
       <div class="container flex flex-col gap-6 mx-auto text-white md:flex-row">
         <div
-          class="flex flex-row text-4xl font-bold text-center border-4 border-white md:w-1/2 xl:w-1/3"
+          class="
+            flex flex-row
+            text-4xl
+            font-bold
+            text-center
+            border-4 border-white
+            md:w-1/2
+            xl:w-1/3
+          "
         >
           <div class="flex-1 px-8 py-4 border-r-4 border-white">0(I)</div>
           <div class="px-8 py-4">Rh+</div>
@@ -83,34 +113,34 @@ import VSection from '../components/section/VSection'
 export default {
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    VSection
+    VSection,
   },
   data: () => ({
     contactMethods: {
       mail: {
         text: 'Mail',
-        href: 'mailto:leon.03.99@gmail.com'
+        href: 'mailto:leon.03.99@gmail.com',
       },
       telegram: {
         text: 'Telegram',
-        href: 'https://t.me/leon0399'
+        href: 'https://t.me/leon0399',
       },
       vk: {
         text: 'Instagram',
-        href: 'https://instagram.com/leon0399'
+        href: 'https://instagram.com/leon0399',
       },
       github: {
         text: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/leonid-meleshin-9604111a9/'
-      }
-    }
+        href: 'https://www.linkedin.com/in/leonid-meleshin-9604111a9/',
+      },
+    },
   }),
   head: {
     title: 'My right hand',
     htmlAttrs: {
-      class: 'bg-dark'
-    }
-  }
+      class: 'bg-dark',
+    },
+  },
 }
 </script>
 

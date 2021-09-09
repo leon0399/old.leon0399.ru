@@ -7,13 +7,13 @@
 module.exports = {
   theme: {
     container: {
-      padding: '15px'
+      padding: '15px',
     },
     extend: {
       colors: {
         primary: '#E81E62',
         dark: '#212121',
-        light: '#E5E5E5'
+        light: '#E5E5E5',
       },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
@@ -30,11 +30,11 @@ module.exports = {
           '"Apple Color Emoji"',
           '"Segoe UI Emoji"',
           '"Segoe UI Symbol"',
-          '"Noto Color Emoji"'
-        ]
-      }
-    }
+          '"Noto Color Emoji"',
+        ],
+      },
+    },
   },
   variants: {},
-  plugins: []
+  plugins: [],
 }
