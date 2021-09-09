@@ -51,7 +51,7 @@
 import BaseCaseItemCard from './BaseCaseItemCard'
 export default {
   name: 'CaseAptekaItemCard',
-  components: { BaseCaseItemCard }
+  components: { BaseCaseItemCard },
 }
 </script>
 

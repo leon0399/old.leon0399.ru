@@ -20,12 +20,12 @@ export default {
   props: {
     background: {
       type: String,
-      default: 'dark'
+      default: 'dark',
     },
     color: {
       type: String,
-      default: 'white'
-    }
+      default: 'white',
+    },
   },
 
   computed: {
@@ -35,8 +35,8 @@ export default {
 
     textColor() {
       return 'text-' + this.color
-    }
-  }
+    },
+  },
 }
 </script>
 

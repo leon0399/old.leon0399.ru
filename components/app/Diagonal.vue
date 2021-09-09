@@ -11,13 +11,13 @@ export default {
       validator(value) {
         // The value must match one of these strings
         return ['top', 'bottom'].includes(value)
-      }
+      },
     },
     color: {
       type: String,
-      default: 'grey-100'
-    }
-  }
+      default: 'grey-100',
+    },
+  },
 }
 </script>
 

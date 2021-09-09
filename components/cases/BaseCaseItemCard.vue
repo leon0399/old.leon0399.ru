@@ -2,7 +2,7 @@
   <div
     class="case case--card"
     :class="{
-      'case--empty': empty
+      'case--empty': empty,
     }"
   >
     <slot />
@@ -16,9 +16,9 @@ export default {
   props: {
     empty: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>
 

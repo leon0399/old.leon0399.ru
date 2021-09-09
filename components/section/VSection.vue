@@ -21,24 +21,24 @@ export default {
   props: {
     dividerTopColor: {
       type: String,
-      default: null
+      default: null,
     },
     dividerBottomColor: {
       type: String,
-      default: null
+      default: null,
     },
     noDiagonalPaddingTop: {
       type: Boolean,
-      default: false
+      default: false,
     },
     noDiagonalPaddingBottom: {
       type: Boolean,
-      default: false
+      default: false,
     },
     large: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     classes() {
@@ -48,10 +48,10 @@ export default {
         'section--diagonal-top':
           this.dividerTopColor && !this.noDiagonalPaddingTop,
         'section--diagonal-bottom':
-          this.dividerBottomColor && !this.noDiagonalPaddingBottom
+          this.dividerBottomColor && !this.noDiagonalPaddingBottom,
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

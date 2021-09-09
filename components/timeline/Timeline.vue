@@ -3,7 +3,7 @@
     :class="{
       timeline: true,
       'timeline--left': !right,
-      'timeline--right': right
+      'timeline--right': right,
     }"
   >
     <slot />
@@ -16,9 +16,9 @@ export default {
   props: {
     right: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>
 

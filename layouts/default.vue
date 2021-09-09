@@ -11,8 +11,8 @@ import TheNavbar from '../components/app/TheNavbar'
 
 export default {
   components: {
-    TheNavbar
-  }
+    TheNavbar,
+  },
 }
 </script>
 
