@@ -66,7 +66,8 @@ export default {
 
   .case__hope {
     position: absolute;
-    transition: all 400ms ease-in-out;
+    will-change: transform;
+    transition: transform 0.3s ease;
 
     width: 235.13px;
     height: 87.14px;
@@ -74,12 +75,13 @@ export default {
     left: calc(50% - 235.13px / 2 - 45.01px);
     top: 19.43px;
 
-    transform: matrix(0.86, -0.51, 0.5, 0.86, 0, 0);
+    transform: rotate(-35.29deg);
   }
 
   .case__empathy {
     position: absolute;
-    transition: all 400ms ease-in-out;
+    will-change: transform;
+    transition: transform 0.3s ease;
 
     width: 235.03px;
     height: 87.18px;
@@ -87,13 +89,17 @@ export default {
     left: calc(50% - 235.03px / 2 + 39.09px);
     top: calc(50% - 87.18px / 2 - 59.83px);
 
-    transform: matrix(0.97, -0.24, 0.24, 0.97, 0, 0);
+    transform: rotate(-14.72deg);
   }
 
   &:hover {
     .case__hope {
+      transform: rotate(-35.29deg) scale(1.05);
+      transition-duration: 0.8s;
     }
     .case__empathy {
+      transform: rotate(-14.72deg) scale(1.05);
+      transition-duration: 0.8s;
     }
   }
 }

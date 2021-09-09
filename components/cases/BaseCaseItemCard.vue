@@ -32,9 +32,21 @@ export default {
 
     border-radius: 1.5rem;
     box-shadow: 0px 20px 120px rgba(0, 0, 0, 0.1);
+
+    will-change: transform, box-shadow;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      &:not(.case--empty) {
+        transform: scale(1.05);
+        transition-duration: 0.8s;
+      }
+    }
   }
 
   &--empty {
+    cursor: not-allowed;
+
     background-image: url('../../assets/img/glitch-corrupt.gif');
     background-repeat: repeat;
     background-position: center center;

@@ -64,6 +64,18 @@ export default {
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
   }
+
+  .floating-card {
+    will-change: transform;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    .floating-card {
+      transform: translateY(-50%) scale(1.05);
+      transition-duration: 0.8s;
+    }
+  }
 }
 
 .floating-card {
@@ -105,6 +117,11 @@ export default {
     .floating-card__inner {
       background-color: #c5517d;
       background-image: url('~assets/img/cases/devolt-one/mock-1.png');
+      background-image: image-set(
+        '~assets/img/cases/devolt-one/mock-1.png' 1x,
+        '~assets/img/cases/devolt-one/mock-1@2x.png' 2x,
+        '~assets/img/cases/devolt-one/mock-1@3x.png' 3x
+      );
       transform: matrix(0.96, 0.29, -0.29, 0.96, 0, 0);
     }
 
@@ -116,6 +133,11 @@ export default {
     .floating-card__inner {
       background-color: #88e7c4;
       background-image: url('~assets/img/cases/devolt-one/mock-2.png');
+      background-image: image-set(
+        '~assets/img/cases/devolt-one/mock-2.png' 1x,
+        '~assets/img/cases/devolt-one/mock-2@2x.png' 2x,
+        '~assets/img/cases/devolt-one/mock-2@3x.png' 3x
+      );
       transform: matrix(0.98, -0.21, 0.2, 0.98, 0, 0);
     }
 
