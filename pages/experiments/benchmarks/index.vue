@@ -1,6 +1,16 @@
 <template>
   <div id="benchmarks">
     <section class="container mx-auto">
+      <multiselect
+        v-model="selectedLanguages"
+        class="my-4"
+        tag-placeholder="Add this as new tag"
+        placeholder="Search or add a tag"
+        multiple
+        :taggable="true"
+        :options="languages"
+      />
+
       <div
         v-for="(scripts, group) in groupedBenchmarks"
         :key="`bench-group-${group}`"
@@ -13,7 +23,7 @@
             :key="`bench-script-${script}`"
           >
             <bar-chart
-              :data="toBarData(langs)"
+              :chart-data="toBarData(langs)"
               :options="{
                 responsive: true,
                 plugins: {
@@ -24,6 +34,15 @@
                     display: true,
                     text: script,
                   },
+                },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
                 },
               }"
             />
@@ -42,6 +61,10 @@ import mapValues from 'lodash.mapvalues'
 import groupBy from 'lodash.groupby'
 import toPairs from 'lodash.topairs'
 import fromPairs from 'lodash.frompairs'
+import pick from 'lodash.pick'
+
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 
 import BarChart from '~/components/charts/Bar'
 
@@ -56,14 +79,27 @@ const languageColors = {
   Rust: '#dea584',
 }
 
+const languageGroups = {
+  'C++': 'Compiled',
+  Go: 'Compiled',
+  Java: 'Hybrid',
+  JavaScript: 'Interpreted',
+  PHP: 'Interpreted',
+  Python: 'Interpreted',
+  Ruby: 'Interpreted',
+  Rust: 'Compiled',
+}
+
 export default {
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     BarChart,
+    // eslint-disable-next-line vue/no-unused-components
+    Multiselect,
   },
 
   data: () => ({
     results: {},
+    selectedLanguages: [],
   }),
 
   async fetch() {
@@ -71,6 +107,7 @@ export default {
       'https://raw.githubusercontent.com/leon0399/benchmarks/master/.results/results.json'
     )
     this.results = response.data
+    this.selectedLanguages = this.languages
   },
 
   head() {
@@ -80,16 +117,38 @@ export default {
   },
 
   computed: {
+    languages() {
+      return [
+        ...new Set(
+          Object.values(this.results).flatMap((langs) => Object.keys(langs))
+        ),
+      ]
+    },
+    filteredResults() {
+      return fromPairs(
+        toPairs(this.results).map(([script, results]) => {
+          results = pick(results, this.selectedLanguages)
+
+          return [script, results]
+        })
+      )
+    },
     groupedBenchmarks() {
-      const pairs = toPairs(this.results).map(([script, langs]) => [
+      const pairs = toPairs(this.filteredResults).map(([script, langs]) => [
         script,
         fromPairs(
-          toPairs(langs).flatMap(([lang, results]) => {
+          toPairs(langs).flatMap(([language, results]) => {
             const configurations = toPairs(results)
 
-            return configurations.map(([conf, results]) => [
-              lang === conf ? lang : `${lang} (${conf})`,
-              results,
+            return configurations.map(([configuration, results]) => [
+              language === configuration
+                ? language
+                : `${language} (${configuration})`,
+              {
+                language,
+                configuration,
+                results,
+              },
             ])
           })
         ),
@@ -104,18 +163,16 @@ export default {
   methods: {
     toBarData(data) {
       const langs = Object.keys(data)
-      const colors = langs
-        .map((lang) =>
-          lang.includes('(') ? lang.substr(0, lang.indexOf('(')).trim() : lang
-        )
-        .map((lang) => languageColors[lang])
+      const colors = Object.values(data).map(
+        ({ language }) => languageColors[language]
+      )
 
       return {
         labels: langs,
         datasets: [
           {
             label: 'Time, s',
-            data: Object.values(data).map((results) =>
+            data: Object.values(data).map(({ results }) =>
               results.time.median.toFixed(3)
             ),
             backgroundColor: colors,
