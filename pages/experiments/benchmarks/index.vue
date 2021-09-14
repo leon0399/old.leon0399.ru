@@ -23,22 +23,24 @@
             :key="`bench-script-${script}`"
           >
             <bar-chart
+              :height="300"
+              :chart-id="script"
               :chart-data="toBarData(langs)"
               :options="{
                 responsive: true,
-                plugins: {
-                  legend: {
-                    position: 'top',
-                  },
-                  title: {
-                    display: true,
-                    text: script,
-                  },
+                legend: {
+                  display: false,
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: script,
                 },
                 scales: {
                   yAxes: [
                     {
                       ticks: {
+                        suggestedMax: getMaxInCategory(group),
                         beginAtZero: true,
                       },
                     },
@@ -161,6 +163,16 @@ export default {
   },
 
   methods: {
+    getMaxInCategory(category) {
+      const values = Object.values(this.groupedBenchmarks[category]).flatMap(
+        (configurations) =>
+          Object.values(configurations).map(
+            ({ results }) => results.time.median
+          )
+      )
+
+      return Math.max(...values)
+    },
     toBarData(data) {
       const langs = Object.keys(data)
       const colors = Object.values(data).map(
