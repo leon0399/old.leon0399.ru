@@ -1,58 +1,74 @@
 <template>
-  <div id="benchmarks">
-    <section class="container mx-auto">
-      <multiselect
-        v-model="selectedLanguages"
-        class="my-4"
-        tag-placeholder="Add this as new tag"
-        placeholder="Search or add a tag"
-        multiple
-        :taggable="true"
-        :options="languages"
-      />
+  <article id="benchmarks" class="container mx-auto">
+    <section class="grid gap-4 my-4 md:grid-cols-2">
+      <div>
+        <label for="selectLanguage" class="block my-2">Language</label>
+        <multiselect
+          id="selectLanguage"
+          v-model="selectedLanguages"
+          name="selected_languages"
+          tag-placeholder="Add this as new language"
+          placeholder="Search or add a language"
+          multiple
+          :taggable="true"
+          :options="languages"
+          :loading="$fetchState.pending"
+        />
+      </div>
+      <div>
+        <label for="selectTags" class="block my-2">Tags</label>
+        <multiselect
+          id="selectTags"
+          v-model="selectedTags"
+          name="selected_tags"
+          tag-placeholder="Add this as new tag"
+          placeholder="Search or add a tag"
+          multiple
+          :taggable="true"
+          :options="tags"
+          :loading="$fetchState.pending"
+        />
+      </div>
+    </section>
 
-      <div
-        v-for="(scripts, group) in groupedBenchmarks"
-        :key="`bench-group-${group}`"
-      >
-        <h3 class="text-2xl font-montserrat font-bold py-2" v-text="group" />
+    <section
+      v-for="(scripts, group) in groupedBenchmarks"
+      :key="`bench-group-${group}`"
+    >
+      <h3 class="text-2xl font-montserrat font-bold py-2" v-text="group" />
 
-        <div class="grid md:grid-cols-2 gap-4">
-          <div
-            v-for="(langs, script) in scripts"
-            :key="`bench-script-${script}`"
-          >
-            <bar-chart
-              :height="300"
-              :chart-id="script"
-              :chart-data="toBarData(langs)"
-              :options="{
-                responsive: true,
-                legend: {
-                  display: false,
-                  position: 'top',
-                },
-                title: {
-                  display: true,
-                  text: script,
-                },
-                scales: {
-                  yAxes: [
-                    {
-                      ticks: {
-                        suggestedMax: getMaxInCategory(group),
-                        beginAtZero: true,
-                      },
+      <div class="grid md:grid-cols-2 gap-4">
+        <div v-for="(langs, script) in scripts" :key="`bench-script-${script}`">
+          <bar-chart
+            :height="300"
+            :chart-id="script"
+            :chart-data="toBarData(langs)"
+            :options="{
+              responsive: true,
+              legend: {
+                display: false,
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: script,
+              },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      suggestedMax: getMaxInCategory(group),
+                      beginAtZero: true,
                     },
-                  ],
-                },
-              }"
-            />
-          </div>
+                  },
+                ],
+              },
+            }"
+          />
         </div>
       </div>
     </section>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -101,7 +117,9 @@ export default {
 
   data: () => ({
     results: {},
+    tags: ['GraalVM'],
     selectedLanguages: [],
+    selectedTags: [],
   }),
 
   async fetch() {
@@ -111,6 +129,8 @@ export default {
     this.results = response.data
     this.selectedLanguages = this.languages
   },
+
+  fetchOnServer: false,
 
   head() {
     return {
@@ -126,36 +146,63 @@ export default {
         ),
       ]
     },
+    transformedResults() {
+      const pairs = toPairs(this.results).map(([script, langs]) => [
+        script,
+        fromPairs(
+          toPairs(langs).flatMap(([language, results]) => {
+            const configurations = toPairs(results)
+
+            return configurations.map(([configuration, results]) => {
+              const title =
+                language === configuration
+                  ? language
+                  : `${language} (${configuration})`
+
+              const tags = []
+
+              if (configuration.includes('GraalVM')) {
+                tags.push('GraalVM')
+              }
+
+              return [
+                title,
+                {
+                  language,
+                  tags,
+                  configuration,
+                  results,
+                },
+              ]
+            })
+          })
+        ),
+      ])
+
+      return fromPairs(pairs)
+    },
     filteredResults() {
       return fromPairs(
-        toPairs(this.results).map(([script, results]) => {
-          results = pick(results, this.selectedLanguages)
+        toPairs(this.transformedResults).map(([script, results]) => {
+          results = fromPairs(
+            toPairs(results)
+              .filter(([_, { language }]) =>
+                this.selectedLanguages.includes(language)
+              )
+              .filter(
+                ([_, { tags }]) =>
+                  !tags.length ||
+                  (!this.selectedTags.length && !tags.length) ||
+                  tags.filter((tag) => this.selectedTags.includes(tag)).length
+              )
+          )
 
           return [script, results]
         })
       )
     },
     groupedBenchmarks() {
-      const pairs = toPairs(this.filteredResults).map(([script, langs]) => [
-        script,
-        fromPairs(
-          toPairs(langs).flatMap(([language, results]) => {
-            const configurations = toPairs(results)
-
-            return configurations.map(([configuration, results]) => [
-              language === configuration
-                ? language
-                : `${language} (${configuration})`,
-              {
-                language,
-                configuration,
-                results,
-              },
-            ])
-          })
-        ),
-      ])
-
+      const pairs = toPairs(this.filteredResults)
       const groups = groupBy(pairs, ([k, v]) => k.substr(0, k.indexOf('/')))
 
       return mapValues(groups, (langs) => fromPairs(langs))
