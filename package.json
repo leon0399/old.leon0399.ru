@@ -15,7 +15,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/style-resources": "^1.2.1",
-    "chart.js": "2",
+    "chart.js": "3",
     "lodash.frompairs": "^4.0.1",
     "lodash.groupby": "^4.6.0",
     "lodash.map": "^4.6.0",
