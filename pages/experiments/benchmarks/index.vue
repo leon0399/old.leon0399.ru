@@ -13,7 +13,29 @@
           :taggable="true"
           :options="languages"
           :loading="$fetchState.pending"
-        />
+        >
+          <template #tag="{ option, remove }">
+            <span
+              class="multiselect__tag multiselect__tag--language"
+              :class="
+                isDark(languageColors[option])
+                  ? 'multiselect__tag--dark'
+                  : 'multiselect__tag--light'
+              "
+              :style="{
+                backgroundColor: languageColors[option],
+              }"
+            >
+              <span v-text="option" />
+              <i
+                aria-hidden="true"
+                tabindex="1"
+                class="multiselect__tag-icon"
+                @click="() => remove(option)"
+              />
+            </span>
+          </template>
+        </multiselect>
       </div>
       <div>
         <label for="selectTags" class="block my-2">Tags</label>
@@ -86,17 +108,6 @@ import 'vue-multiselect/dist/vue-multiselect.min.css'
 
 import BarChart from '~/components/charts/Bar'
 
-const languageColors = {
-  'C++': '#f34b7d',
-  Go: '#00ADD8',
-  Java: '#b07219',
-  JavaScript: '#f1e05a',
-  PHP: '#4F5D95',
-  Python: '#3572A5',
-  Ruby: '#701516',
-  Rust: '#dea584',
-}
-
 const languageGroups = {
   'C++': 'Compiled',
   Go: 'Compiled',
@@ -117,6 +128,16 @@ export default {
 
   data: () => ({
     results: {},
+    languageColors: {
+      'C++': '#f34b7d',
+      Go: '#00ADD8',
+      Java: '#b07219',
+      JavaScript: '#f1e05a',
+      PHP: '#4F5D95',
+      Python: '#3572A5',
+      Ruby: '#701516',
+      Rust: '#dea584',
+    },
     tags: ['GraalVM'],
     selectedLanguages: [],
     selectedTags: [],
@@ -210,6 +231,21 @@ export default {
   },
 
   methods: {
+    // https://stackoverflow.com/a/12043228
+    isDark(c) {
+      c = c.substring(1) // strip #
+      const rgb = parseInt(c, 16) // convert rrggbb to decimal
+      // eslint-disable-next-line prettier/prettier
+      const r = (rgb >> 16) & 0xFF // extract red
+      // eslint-disable-next-line prettier/prettier
+      const g = (rgb >> 8) & 0xFF // extract green
+      // eslint-disable-next-line prettier/prettier
+      const b = (rgb >> 0) & 0xFF // extract blue
+
+      const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b // per ITU-R BT.709
+
+      return luma < 128
+    },
     getMaxInCategory(category) {
       const values = Object.values(this.groupedBenchmarks[category]).flatMap(
         (configurations) =>
@@ -223,7 +259,7 @@ export default {
     toBarData(data) {
       const langs = Object.keys(data)
       const colors = Object.values(data).map(
-        ({ language }) => languageColors[language]
+        ({ language }) => this.languageColors[language]
       )
 
       return {
@@ -242,3 +278,37 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.multiselect__tag {
+  &--language {
+    color: inherit;
+
+    > .multiselect__tag-icon {
+      &:after {
+        color: inherit;
+      }
+    }
+
+    &.multiselect__tag--light {
+      color: #000;
+
+      > .multiselect__tag-icon {
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    &.multiselect__tag--dark {
+      color: #fff;
+
+      > .multiselect__tag-icon {
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+</style>
