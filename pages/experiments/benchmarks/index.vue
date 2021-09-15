@@ -144,11 +144,18 @@ export default {
   }),
 
   async fetch() {
-    const response = await this.$axios.get(
+    const results = await this.$axios.get(
       'https://raw.githubusercontent.com/leon0399/benchmarks/master/.results/results.json'
     )
-    this.results = response.data
+    this.results = results.data
     this.selectedLanguages = this.languages
+
+    const languageColors = await this.$axios.get(
+      'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
+    )
+    this.languageColors = fromPairs(
+      toPairs(languageColors.data).map(([lang, { color }]) => [lang, color])
+    )
   },
 
   fetchOnServer: false,
