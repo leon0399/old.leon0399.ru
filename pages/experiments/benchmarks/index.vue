@@ -2,7 +2,7 @@
   <article id="benchmarks" class="container mx-auto">
     <section class="grid gap-4 my-4 md:grid-cols-2">
       <div>
-        <label for="selectLanguage" class="block my-2">Language</label>
+        <label for="selectLanguage" class="inline-block my-2">Language</label>
         <multiselect
           id="selectLanguage"
           v-model="selectedLanguages"
@@ -38,7 +38,7 @@
         </multiselect>
       </div>
       <div>
-        <label for="selectTags" class="block my-2">Tags</label>
+        <label for="selectTags" class="inline-block my-2">Tags</label>
         <multiselect
           id="selectTags"
           v-model="selectedTags"
@@ -138,24 +138,23 @@ export default {
       Ruby: '#701516',
       Rust: '#dea584',
     },
-    tags: ['GraalVM'],
     selectedLanguages: [],
-    selectedTags: [],
+    selectedTags: ['JIT'],
   }),
 
   async fetch() {
-    const results = await this.$axios.get(
-      'https://raw.githubusercontent.com/leon0399/benchmarks/master/.results/results.json'
-    )
-    this.results = results.data
-    this.selectedLanguages = this.languages
-
     const languageColors = await this.$axios.get(
       'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
     )
     this.languageColors = fromPairs(
       toPairs(languageColors.data).map(([lang, { color }]) => [lang, color])
     )
+
+    const results = await this.$axios.get(
+      'https://raw.githubusercontent.com/leon0399/benchmarks/master/.results/results.json'
+    )
+    this.results = results.data
+    this.selectedLanguages = this.languages
   },
 
   fetchOnServer: false,
@@ -174,6 +173,15 @@ export default {
         ),
       ]
     },
+    tags() {
+      return [
+        ...new Set(
+          toPairs(this.transformedResults).flatMap(([_, configurations]) =>
+            toPairs(configurations).flatMap(([_, { tags }]) => tags)
+          )
+        ),
+      ]
+    },
     transformedResults() {
       const pairs = toPairs(this.results).map(([script, langs]) => [
         script,
@@ -187,11 +195,7 @@ export default {
                   ? language
                   : `${language} (${configuration})`
 
-              const tags = []
-
-              if (configuration.includes('GraalVM')) {
-                tags.push('GraalVM')
-              }
+              const { tags } = results
 
               return [
                 title,
@@ -301,7 +305,8 @@ export default {
       color: #000;
 
       > .multiselect__tag-icon {
-        &:hover {
+        &:hover,
+        &:focus {
           background-color: rgba(0, 0, 0, 0.1);
         }
       }
@@ -311,7 +316,8 @@ export default {
       color: #fff;
 
       > .multiselect__tag-icon {
-        &:hover {
+        &:hover,
+        &:focus {
           background-color: rgba(255, 255, 255, 0.1);
         }
       }
