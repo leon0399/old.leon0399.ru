@@ -1,6 +1,30 @@
 <template>
   <article id="benchmarks" class="container mx-auto">
     <section class="grid gap-4 my-4 md:grid-cols-2">
+      <div
+        role="tablist"
+        aria-orientation="horizontal"
+        class="flex space-x-1 rounded"
+      >
+        <button
+          v-for="(name, key) in types"
+          :key="`type-${key}`"
+          class="
+            w-full
+            py-2
+            rounded
+            border border-gray-200
+            focus:outline-none focus:ring
+          "
+          :class="{
+            'bg-gray-200': selectedType === key,
+            'hover:bg-gray-100': selectedType !== key,
+          }"
+          @click="() => (selectedType = key)"
+          v-text="name"
+        />
+      </div>
+      <div />
       <div>
         <label for="selectLanguage" class="inline-block my-2">Language</label>
         <multiselect
@@ -64,7 +88,7 @@
           <bar-chart
             :height="300"
             :chart-id="script"
-            :chart-data="toBarData(langs)"
+            :chart-data="toBarData(langs, selectedType)"
             :options="{
               responsive: true,
               legend: {
@@ -79,7 +103,7 @@
                 yAxes: [
                   {
                     ticks: {
-                      suggestedMax: getMaxInCategory(group),
+                      suggestedMax: getMaxInCategory(group, selectedType),
                       beginAtZero: true,
                     },
                   },
@@ -127,6 +151,11 @@ export default {
   },
 
   data: () => ({
+    types: {
+      time: 'Time',
+      memory: 'Memory',
+    },
+    selectedType: 'time',
     results: {},
     languageColors: {
       'C++': '#f34b7d',
@@ -195,6 +224,12 @@ export default {
                   ? language
                   : `${language} (${configuration})`
 
+              results.memory.median /= 1024 * 1024
+              results.memory.delta /= 1024 * 1024
+              results.memory.results = results.memory.results.map(
+                (memory) => memory / (1024 * 1024)
+              )
+
               const { tags } = results
 
               return [
@@ -257,17 +292,17 @@ export default {
 
       return luma < 128
     },
-    getMaxInCategory(category) {
+    getMaxInCategory(category, type) {
       const values = Object.values(this.groupedBenchmarks[category]).flatMap(
         (configurations) =>
           Object.values(configurations).map(
-            ({ results }) => results.time.median
+            ({ results }) => results[type].median
           )
       )
 
       return Math.max(...values)
     },
-    toBarData(data) {
+    toBarData(data, type) {
       const langs = Object.keys(data)
       const colors = Object.values(data).map(
         ({ language }) => this.languageColors[language]
@@ -277,9 +312,9 @@ export default {
         labels: langs,
         datasets: [
           {
-            label: 'Time, s',
+            label: this.selectedType === 'memory' ? 'Memory, MiB' : 'Time, s',
             data: Object.values(data).map(({ results }) =>
-              results.time.median.toFixed(3)
+              results[type].median.toFixed(3)
             ),
             backgroundColor: colors,
           },
