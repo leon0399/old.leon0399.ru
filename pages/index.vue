@@ -41,7 +41,7 @@
           </no-ssr>
         </div>
         <div class="px-4 intro__rose w-100 lg:w-1/2">
-          <img src="~/assets/img/flower.gif" alt="Glitched flower" />
+          <img src="~/assets/img/hero/flower.gif" alt="Glitched flower" />
         </div>
       </div>
     </v-section>
@@ -166,6 +166,7 @@ export default {
     BaseCaseItemCard,
   },
   data: () => ({
+    selectedImage: null,
     contactMethods: {
       telegram: {
         text: 'Telegram',
