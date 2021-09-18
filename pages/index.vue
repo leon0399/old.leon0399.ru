@@ -1,11 +1,6 @@
 <template>
   <div id="index">
-    <v-section
-      id="intro"
-      class="relative flex items-center intro bg-dark"
-      divider-bottom-color="light"
-      no-diagonal-padding-bottom
-    >
+    <v-section id="intro" class="relative flex items-center intro bg-dark">
       <div
         class="
           container
@@ -46,12 +41,7 @@
       </div>
     </v-section>
 
-    <v-section
-      id="about"
-      class="relative about bg-light"
-      divider-bottom-color="white"
-      large
-    >
+    <v-section id="about" class="relative about" large>
       <div class="container flex justify-start mx-auto">
         <div class="w-100 lg:w-2/3">
           <h1 class="pb-2 text-5xl font-extrabold font-montserrat">
@@ -76,12 +66,62 @@
               :key="'contact-' + index"
               class="inline-block px-2 py-4"
             >
-              <a :href="method.href" target="_blank" class="text-primary">
+              <a
+                :href="method.href"
+                target="_blank"
+                class="text-primary"
+                rel="nofollow"
+              >
                 {{ method.text }}
               </a>
             </li>
           </ul>
         </div>
+      </div>
+    </v-section>
+
+    <v-section id="experimants" class="relative bg-gray-200">
+      <v-section-heading
+        class="container mx-auto"
+        title="Experiments"
+        sub-title="Funny little things"
+      />
+      <div class="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <nuxt-link
+          :to="'/experiments/benchmarks'"
+          class="
+            flex flex-col-reverse
+            md:flex-row
+            justify-start
+            md:justify-between
+            items-center
+            md:items-end
+            p-6
+            gap-4
+            rounded-3xl
+            bg-white
+            border border-black
+          "
+        >
+          <div>
+            <span class="font-montserrat font-black text-3xl">
+              Benchmarks
+            </span>
+          </div>
+          <picture v-lazy-container="{ selector: 'img' }">
+            <img
+              :data-loading="
+                require('~/assets/img/experiments/benchmarks/rocket.png?lqip')
+              "
+              :data-src="
+                require('~/assets/img/experiments/benchmarks/rocket.png?size=128')
+              "
+              alt="Benchmarks"
+              class="block w-32 h-32"
+              loading="lazy"
+            />
+          </picture>
+        </nuxt-link>
       </div>
     </v-section>
 
@@ -104,12 +144,7 @@
       </div>
     </v-section>
 
-    <v-section
-      id="jobs"
-      class="z-10 jobs bg-dark"
-      divider-top-color="white"
-      no-diagonal-padding-top
-    >
+    <v-section id="jobs" class="z-10 jobs bg-dark">
       <div class="container mx-auto">
         <timeline class="border-white lg:w-1/2">
           <timeline-item
@@ -141,15 +176,15 @@
 </template>
 
 <script>
-import VSection from '../components/section/VSection'
-import VSectionHeading from '../components/section/VSectionHeading'
+import VSection from '~/components/section/VSection'
+import VSectionHeading from '~/components/section/VSectionHeading'
 
-import BaseCaseItemCard from '../components/cases/BaseCaseItemCard'
-import CaseDevoltOneItemCard from '../components/cases/CaseDevoltOneItemCard'
-import CaseAptekaItemCard from '../components/cases/CaseAptekaItemCard'
+import BaseCaseItemCard from '~/components/cases/BaseCaseItemCard'
+import CaseDevoltOneItemCard from '~/components/cases/CaseDevoltOneItemCard'
+import CaseAptekaItemCard from '~/components/cases/CaseAptekaItemCard'
 
-import Timeline from '../components/timeline/Timeline'
-import TimelineItem from '../components/timeline/TimelineItem'
+import Timeline from '~/components/timeline/Timeline'
+import TimelineItem from '~/components/timeline/TimelineItem'
 
 let VueTyper = null
 if (process.browser) {
@@ -252,8 +287,12 @@ export default {
 </script>
 
 <style lang="scss">
+img[lazy='loading']:not(.no-blur) {
+  filter: blur(15px);
+}
+
 .intro {
-  min-height: calc(100vh - 100px);
+  min-height: calc(80vh - 100px);
 
   &__pathos {
     @apply leading-none;

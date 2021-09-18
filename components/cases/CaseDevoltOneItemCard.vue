@@ -40,7 +40,7 @@
               :data-src="
                 require('~/assets/img/cases/devolt-one/mock-1.png?size=144')
               "
-              class="floating-card__inner"
+              class="floating-card__inner no-blur"
               loading="lazy"
             />
           </picture>
@@ -70,7 +70,7 @@
               :data-src="
                 require('~/assets/img/cases/devolt-one/mock-2.png?size=144')
               "
-              class="floating-card__inner"
+              class="floating-card__inner no-blur"
               loading="lazy"
             />
           </picture>
