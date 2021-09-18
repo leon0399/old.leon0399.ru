@@ -85,6 +85,7 @@
     <section
       v-for="(scripts, group) in groupedBenchmarks"
       :key="`bench-group-${group}`"
+      class="my-16"
     >
       <h3 class="text-2xl font-montserrat font-bold py-2" v-text="group" />
 
@@ -119,23 +120,56 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <h2 class="text-3xl font-semibold pb-3">About this project</h2>
+      <p></p>
+
+      <h3 class="text-2xl font-semibold py-2">Links</h3>
+
+      <ul class="list-disc pl-8 py-2">
+        <li>
+          <a
+            href="https://github.com/leon0399/benchmarks"
+            target="_blank"
+            class="text-primary"
+          >
+            Github
+          </a>
+        </li>
+      </ul>
+    </section>
   </article>
 </template>
 
 <script>
 /* eslint-disable no-unused-vars */
 
-import map from 'lodash.map'
+// import map from 'lodash.map'
 import mapValues from 'lodash.mapvalues'
 import groupBy from 'lodash.groupby'
 import toPairs from 'lodash.topairs'
 import fromPairs from 'lodash.frompairs'
-import pick from 'lodash.pick'
+// import pick from 'lodash.pick'
 
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 
 import BarChart from '~/components/charts/Bar'
+
+const benchmarkTitles = {
+  primes: 'Prime Numbers',
+  'primes/Atkin': 'Sieve of Atkin',
+  collatz: 'Collatz Conjecture',
+  'collatz/MaxSequence': 'Find longest sequence',
+  mandelbrot: 'Mandelbrot Set',
+  'mandelbrot/Simple': 'Not-Colored',
+  treap: 'Treap',
+  'treap/Naive': 'Naive Implementation',
+  recursion: 'Recursion',
+  'recursion/Tak': 'TAK function',
+  io: 'I/O',
+}
 
 const languageGroups = {
   Interpreted: ['JavaScript', 'PHP', 'Python', 'Ruby'],
@@ -286,9 +320,20 @@ export default {
     },
     groupedBenchmarks() {
       const pairs = toPairs(this.filteredResults)
-      const groups = groupBy(pairs, ([k, v]) => k.substr(0, k.indexOf('/')))
+      const groups = groupBy(pairs, ([k, v]) => {
+        const group = k.substr(0, k.indexOf('/'))
 
-      return mapValues(groups, (langs) => fromPairs(langs))
+        return benchmarkTitles[group] ?? group
+      })
+
+      return mapValues(groups, (langs) =>
+        fromPairs(
+          langs.map(([bench, confs]) => [
+            benchmarkTitles[bench] ?? bench,
+            confs,
+          ])
+        )
+      )
     },
   },
 

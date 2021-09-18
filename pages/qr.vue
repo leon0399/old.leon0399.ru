@@ -30,6 +30,8 @@
               my-8
               text-center text-white
               bg-primary
+              hover:bg-primary-600
+              focus:outline-none focus:ring
               md:w-auto
             "
           >

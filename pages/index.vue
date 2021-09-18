@@ -5,11 +5,12 @@
         class="
           container
           flex flex-col
+          lg:flex-row lg:justify-between
           items-center
           justify-center
+          gap-8
           h-full
           mx-auto
-          lg:flex-row lg:justify-between
         "
       >
         <div
@@ -36,7 +37,7 @@
           </no-ssr>
         </div>
         <div class="px-4 intro__rose w-100 lg:w-1/2">
-          <img src="~/assets/img/hero/flower.gif" alt="Glitched flower" />
+          <img :src="selectedImage" alt="Glitched flower" />
         </div>
       </div>
     </v-section>
@@ -44,7 +45,7 @@
     <v-section id="about" class="relative about" large>
       <div class="container flex justify-start mx-auto">
         <div class="w-100 lg:w-2/3">
-          <h1 class="pb-2 text-5xl font-extrabold font-montserrat">
+          <h1 class="pb-6 text-5xl font-extrabold font-montserrat">
             Hello there!
           </h1>
 
@@ -95,7 +96,9 @@
             justify-start
             md:justify-between
             items-center
-            md:items-end
+            md:items-start
+            text-center
+            md:text-left
             p-6
             gap-4
             rounded-3xl
@@ -103,12 +106,13 @@
             border border-black
           "
         >
-          <div>
-            <span class="font-montserrat font-black text-3xl">
-              Benchmarks
-            </span>
+          <div class="">
+            <h3 class="font-montserrat font-black text-3xl">Benchmarks</h3>
+            <p class="py-2 text-sm text-gray-900">
+              (Not) scientific measurments of programming languages performance
+            </p>
           </div>
-          <picture v-lazy-container="{ selector: 'img' }">
+          <picture v-lazy-container="{ selector: 'img' }" class="flex-shrink-0">
             <img
               :data-loading="
                 require('~/assets/img/experiments/benchmarks/rocket.png?lqip')
@@ -116,6 +120,11 @@
               :data-src="
                 require('~/assets/img/experiments/benchmarks/rocket.png?size=128')
               "
+              :data-srcset="`
+                ${require('~/assets/img/experiments/benchmarks/rocket.png?size=128')} 1x,
+                ${require('~/assets/img/experiments/benchmarks/rocket.png?size=256')} 2x,
+                ${require('~/assets/img/experiments/benchmarks/rocket.png?size=384')} 3x
+              `"
               alt="Benchmarks"
               class="block w-32 h-32"
               loading="lazy"
@@ -154,7 +163,12 @@
           >
             <h3 class="text-lg font-extrabold font-montserrat">
               {{ job.position }} <span class="text-gray-500">at</span>
-              <a :href="job.website" target="_blank" class="text-primary">
+              <a
+                :href="job.website"
+                target="_blank"
+                rel="nofollow"
+                class="text-primary"
+              >
                 {{ job.place }}
               </a>
             </h3>
@@ -185,6 +199,11 @@ import CaseAptekaItemCard from '~/components/cases/CaseAptekaItemCard'
 
 import Timeline from '~/components/timeline/Timeline'
 import TimelineItem from '~/components/timeline/TimelineItem'
+
+import ImageFlower from '~/assets/img/hero/flower.gif'
+import ImageBall from '~/assets/img/hero/ball.gif'
+
+const heroes = [ImageFlower, ImageBall]
 
 let VueTyper = null
 if (process.browser) {
@@ -283,6 +302,9 @@ export default {
       title: 'Leonid Meleshin',
     }
   },
+  created() {
+    this.selectedImage = heroes[Math.floor(Math.random() * heroes.length)]
+  },
 }
 </script>
 
@@ -292,7 +314,8 @@ img[lazy='loading']:not(.no-blur) {
 }
 
 .intro {
-  min-height: calc(80vh - 100px);
+  height: calc(90vh - 100px);
+  max-height: 1080px;
 
   &__pathos {
     @apply leading-none;
