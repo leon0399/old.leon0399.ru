@@ -36,8 +36,11 @@
           tag-placeholder="Add this as new language"
           placeholder="Search or add a language"
           multiple
+          group-label="name"
+          group-values="languages"
+          group-select
           :taggable="true"
-          :options="languages"
+          :options="groupedLanguages"
           :loading="$fetchState.pending"
         >
           <template #tag="{ option, remove }">
@@ -135,20 +138,13 @@ import 'vue-multiselect/dist/vue-multiselect.min.css'
 import BarChart from '~/components/charts/Bar'
 
 const languageGroups = {
-  'C++': 'Compiled',
-  Go: 'Compiled',
-  Java: 'Hybrid',
-  JavaScript: 'Interpreted',
-  PHP: 'Interpreted',
-  Python: 'Interpreted',
-  Ruby: 'Interpreted',
-  Rust: 'Compiled',
+  Interpreted: ['JavaScript', 'PHP', 'Python', 'Ruby'],
+  Compiled: ['C++', 'Go', 'Java', 'Kotlin', 'Rust'],
 }
 
 export default {
   components: {
     BarChart,
-    // eslint-disable-next-line vue/no-unused-components
     Multiselect,
   },
 
@@ -203,6 +199,24 @@ export default {
           Object.values(this.results).flatMap((langs) => Object.keys(langs))
         ),
       ]
+    },
+    groupedLanguages() {
+      const languageGroupsPairs = toPairs(languageGroups)
+
+      return toPairs(
+        groupBy(
+          this.languages,
+          (lang) =>
+            languageGroupsPairs.find(([group, langs]) =>
+              langs.includes(lang)
+            )?.[0] ?? 'Other'
+        )
+      )
+        .sort((name) => Object.keys(languageGroups).indexOf(name) ?? 999)
+        .map(([name, languages]) => ({
+          name,
+          languages,
+        }))
     },
     tags() {
       return [
@@ -357,6 +371,12 @@ export default {
         &:focus {
           background-color: rgba(255, 255, 255, 0.1);
         }
+      }
+    }
+
+    > .multiselect__tag-icon {
+      &:focus {
+        // outline: none;
       }
     }
   }
