@@ -2,31 +2,77 @@
   <base-case-item-card class="case--apteka">
     <div class="flex flex-col justify-end w-full h-full">
       <div class="case__illustration">
-        <img
-          src="@/assets/img/cases/apteka149/hope.png"
-          srcset="
-            @/assets/img/cases/apteka149/hope.png    1x,
-            @/assets/img/cases/apteka149/hope@2x.png 2x,
-            @/assets/img/cases/apteka149/hope@3x.png 3x
-          "
-          class="case__hope"
-          alt="Hope"
-        />
-        <img
-          src="@/assets/img/cases/apteka149/empathy.png"
-          srcset="
-            @/assets/img/cases/apteka149/empathy.png    1x,
-            @/assets/img/cases/apteka149/empathy@2x.png 2x,
-            @/assets/img/cases/apteka149/empathy@3x.png 3x
-          "
-          class="case__empathy"
-          alt="Empathy"
-        />
+        <picture v-lazy-container="{ selector: 'img' }">
+          <source
+            :src="
+              require('~/assets/img/cases/apteka149/hope.png?size=283&format=webp')
+            "
+            :srcSet="`
+              ${require('~/assets/img/cases/apteka149/hope.png?size=283&format=webp')} 1x,
+              ${require('~/assets/img/cases/apteka149/hope.png?size=566&format=webp')} 2x,
+              ${require('~/assets/img/cases/apteka149/hope.png?size=849&format=webp')} 3x
+            `"
+            type="image/webp"
+          />
+          <source
+            :src="require('~/assets/img/cases/apteka149/hope.png?size=283')"
+            :srcSet="`
+              ${require('~/assets/img/cases/apteka149/hope.png?size=283')} 1x,
+              ${require('~/assets/img/cases/apteka149/hope.png?size=566')} 2x,
+              ${require('~/assets/img/cases/apteka149/hope.png?size=849')} 3x
+            `"
+            type="image/png"
+          />
+          <img
+            :data-loading="
+              require('~/assets/img/cases/apteka149/hope.png?lqip')
+            "
+            :data-src="
+              require('~/assets/img/cases/apteka149/hope.png?size=283')
+            "
+            class="case__hope"
+            alt="Hope"
+            loading="lazy"
+          />
+        </picture>
+        <picture v-lazy-container="{ selector: 'img' }">
+          <source
+            :src="
+              require('~/assets/img/cases/apteka149/empathy.png?size=283&format=webp')
+            "
+            :srcSet="`
+              ${require('~/assets/img/cases/apteka149/empathy.png?size=283&format=webp')} 1x,
+              ${require('~/assets/img/cases/apteka149/empathy.png?size=566&format=webp')} 2x,
+              ${require('~/assets/img/cases/apteka149/empathy.png?size=849&format=webp')} 3x
+            `"
+            type="image/webp"
+          />
+          <source
+            :src="require('~/assets/img/cases/apteka149/empathy.png?size=283')"
+            :srcSet="`
+              ${require('~/assets/img/cases/apteka149/empathy.png?size=283')} 1x,
+              ${require('~/assets/img/cases/apteka149/empathy.png?size=566')} 2x,
+              ${require('~/assets/img/cases/apteka149/empathy.png?size=849')} 3x
+            `"
+            type="image/png"
+          />
+          <img
+            :data-loading="
+              require('~/assets/img/cases/apteka149/empathy.png?lqip')
+            "
+            :data-src="
+              require('~/assets/img/cases/apteka149/empathy.png?size=283')
+            "
+            class="case__empathy"
+            alt="Empathy"
+            loading="lazy"
+          />
+        </picture>
       </div>
       <div class="my-4">
         <a href="https://apteka149.ru/">
           <img
-            src="@/assets/img/cases/apteka149/apteka149-logo.svg"
+            src="~/assets/img/cases/apteka149/apteka149-logo.svg"
             alt="Project Logo"
           />
         </a>
@@ -56,6 +102,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+img[lazy='loading'] {
+  filter: blur(15px);
+}
+
 .case--apteka {
   background-color: #c80000;
   color: #ffffff;

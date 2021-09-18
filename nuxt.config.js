@@ -14,6 +14,11 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || '',
       },
+      {
+        hid: 'theme-color',
+        name: 'theme-color',
+        content: '#E81E62',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -38,7 +43,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -47,6 +52,8 @@ export default {
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+    // Doc: https://github.com/juliomrqz/nuxt-optimized-images
+    '@aceforth/nuxt-optimized-images',
   ],
   /*
    ** Nuxt.js modules
@@ -62,6 +69,10 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+
+  optimizedImages: {
+    optimizeImages: true,
+  },
   /*
    ** Build configuration
    */

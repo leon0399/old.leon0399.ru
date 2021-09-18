@@ -16,10 +16,76 @@
     >
       <div class="case__illustration relative h-full">
         <div class="floating-card floating-card--primary">
-          <div class="floating-card__inner"></div>
+          <picture v-lazy-container="{ selector: 'img' }">
+            <source
+              :src="
+                require('~/assets/img/cases/devolt-one/mock-1.png?size=144&format=webp')
+              "
+              :srcSet="`
+                ${require('~/assets/img/cases/devolt-one/mock-1.png?size=144&format=webp')} 1x,
+                ${require('~/assets/img/cases/devolt-one/mock-1.png?size=288&format=webp')} 2x,
+                ${require('~/assets/img/cases/devolt-one/mock-1.png?size=432&format=webp')} 3x
+              `"
+              type="image/webp"
+            />
+            <source
+              :src="
+                require('~/assets/img/cases/devolt-one/mock-1.png?size=144')
+              "
+              :srcSet="`
+                ${require('~/assets/img/cases/devolt-one/mock-1.png?size=144')} 1x,
+                ${require('~/assets/img/cases/devolt-one/mock-1.png?size=288')} 2x,
+                ${require('~/assets/img/cases/devolt-one/mock-1.png?size=432')} 3x
+              `"
+              type="image/png"
+            />
+            <img
+              :data-loading="
+                require('~/assets/img/cases/devolt-one/mock-1.png?lqip')
+              "
+              :data-src="
+                require('~/assets/img/cases/devolt-one/mock-1.png?size=144')
+              "
+              class="floating-card__inner"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="floating-card floating-card--secondary">
-          <div class="floating-card__inner"></div>
+          <picture v-lazy-container="{ selector: 'img' }">
+            <source
+              :src="
+                require('~/assets/img/cases/devolt-one/mock-2.png?size=144&format=webp')
+              "
+              :srcSet="`
+                ${require('~/assets/img/cases/devolt-one/mock-2.png?size=144&format=webp')} 1x,
+                ${require('~/assets/img/cases/devolt-one/mock-2.png?size=288&format=webp')} 2x,
+                ${require('~/assets/img/cases/devolt-one/mock-2.png?size=432&format=webp')} 3x
+              `"
+              type="image/webp"
+            />
+            <source
+              :src="
+                require('~/assets/img/cases/devolt-one/mock-2.png?size=283')
+              "
+              :srcSet="`
+                ${require('~/assets/img/cases/devolt-one/mock-2.png?size=144')} 1x,
+                ${require('~/assets/img/cases/devolt-one/mock-2.png?size=288')} 2x,
+                ${require('~/assets/img/cases/devolt-one/mock-2.png?size=432')} 3x
+              `"
+              type="image/png"
+            />
+            <img
+              :data-loading="
+                require('~/assets/img/cases/devolt-one/mock-2.png?lqip')
+              "
+              :data-src="
+                require('~/assets/img/cases/devolt-one/mock-2.png?size=144')
+              "
+              class="floating-card__inner"
+              loading="lazy"
+            />
+          </picture>
         </div>
       </div>
       <div class="text-center my-4">
@@ -116,12 +182,6 @@ export default {
   &--primary {
     .floating-card__inner {
       background-color: #c5517d;
-      background-image: url('~assets/img/cases/devolt-one/mock-1.png');
-      background-image: image-set(
-        '~assets/img/cases/devolt-one/mock-1.png' 1x,
-        '~assets/img/cases/devolt-one/mock-1@2x.png' 2x,
-        '~assets/img/cases/devolt-one/mock-1@3x.png' 3x
-      );
       transform: matrix(0.96, 0.29, -0.29, 0.96, 0, 0);
     }
 
@@ -132,12 +192,6 @@ export default {
   &--secondary {
     .floating-card__inner {
       background-color: #88e7c4;
-      background-image: url('~assets/img/cases/devolt-one/mock-2.png');
-      background-image: image-set(
-        '~assets/img/cases/devolt-one/mock-2.png' 1x,
-        '~assets/img/cases/devolt-one/mock-2@2x.png' 2x,
-        '~assets/img/cases/devolt-one/mock-2@3x.png' 3x
-      );
       transform: matrix(0.98, -0.21, 0.2, 0.98, 0, 0);
     }
 
