@@ -73,6 +73,7 @@ export default {
   optimizedImages: {
     optimizeImages: true,
   },
+
   /*
    ** Build configuration
    */
@@ -80,6 +81,8 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend(config, ctx) {
+      // console.log(config.module.rules)
+    },
   },
 }
