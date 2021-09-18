@@ -18,9 +18,6 @@
         <div class="floating-card floating-card--primary">
           <picture v-lazy-container="{ selector: 'img' }">
             <source
-              :src="
-                require('~/assets/img/cases/devolt-one/mock-1.png?size=144&format=webp')
-              "
               :srcSet="`
                 ${require('~/assets/img/cases/devolt-one/mock-1.png?size=144&format=webp')} 1x,
                 ${require('~/assets/img/cases/devolt-one/mock-1.png?size=288&format=webp')} 2x,
@@ -29,9 +26,6 @@
               type="image/webp"
             />
             <source
-              :src="
-                require('~/assets/img/cases/devolt-one/mock-1.png?size=144')
-              "
               :srcSet="`
                 ${require('~/assets/img/cases/devolt-one/mock-1.png?size=144')} 1x,
                 ${require('~/assets/img/cases/devolt-one/mock-1.png?size=288')} 2x,
@@ -54,9 +48,6 @@
         <div class="floating-card floating-card--secondary">
           <picture v-lazy-container="{ selector: 'img' }">
             <source
-              :src="
-                require('~/assets/img/cases/devolt-one/mock-2.png?size=144&format=webp')
-              "
               :srcSet="`
                 ${require('~/assets/img/cases/devolt-one/mock-2.png?size=144&format=webp')} 1x,
                 ${require('~/assets/img/cases/devolt-one/mock-2.png?size=288&format=webp')} 2x,
@@ -65,9 +56,6 @@
               type="image/webp"
             />
             <source
-              :src="
-                require('~/assets/img/cases/devolt-one/mock-2.png?size=283')
-              "
               :srcSet="`
                 ${require('~/assets/img/cases/devolt-one/mock-2.png?size=144')} 1x,
                 ${require('~/assets/img/cases/devolt-one/mock-2.png?size=288')} 2x,

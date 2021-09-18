@@ -20,6 +20,8 @@
             'bg-gray-200': selectedType === key,
             'hover:bg-gray-100': selectedType !== key,
           }"
+          :aria-selected="selectedType === key"
+          role="tab"
           @click="() => (selectedType = key)"
           v-text="name"
         />

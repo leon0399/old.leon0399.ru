@@ -4,9 +4,6 @@
       <div class="case__illustration">
         <picture v-lazy-container="{ selector: 'img' }">
           <source
-            :src="
-              require('~/assets/img/cases/apteka149/hope.png?size=283&format=webp')
-            "
             :srcSet="`
               ${require('~/assets/img/cases/apteka149/hope.png?size=283&format=webp')} 1x,
               ${require('~/assets/img/cases/apteka149/hope.png?size=566&format=webp')} 2x,
@@ -15,7 +12,6 @@
             type="image/webp"
           />
           <source
-            :src="require('~/assets/img/cases/apteka149/hope.png?size=283')"
             :srcSet="`
               ${require('~/assets/img/cases/apteka149/hope.png?size=283')} 1x,
               ${require('~/assets/img/cases/apteka149/hope.png?size=566')} 2x,
@@ -37,9 +33,6 @@
         </picture>
         <picture v-lazy-container="{ selector: 'img' }">
           <source
-            :src="
-              require('~/assets/img/cases/apteka149/empathy.png?size=283&format=webp')
-            "
             :srcSet="`
               ${require('~/assets/img/cases/apteka149/empathy.png?size=283&format=webp')} 1x,
               ${require('~/assets/img/cases/apteka149/empathy.png?size=566&format=webp')} 2x,
@@ -48,7 +41,6 @@
             type="image/webp"
           />
           <source
-            :src="require('~/assets/img/cases/apteka149/empathy.png?size=283')"
             :srcSet="`
               ${require('~/assets/img/cases/apteka149/empathy.png?size=283')} 1x,
               ${require('~/assets/img/cases/apteka149/empathy.png?size=566')} 2x,
