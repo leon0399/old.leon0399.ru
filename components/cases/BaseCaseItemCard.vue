@@ -1,5 +1,10 @@
 <template>
   <div
+    v-tilt="{
+      max: 15,
+      scale: 1.05,
+      perspective: 1000,
+    }"
     class="case case--card"
     :class="{
       'case--empty': empty,
@@ -33,15 +38,11 @@ export default {
     border-radius: 1.5rem;
     box-shadow: 0px 20px 120px rgba(0, 0, 0, 0.1);
 
-    will-change: transform, box-shadow;
-    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+  }
 
-    &:hover {
-      &:not(.case--empty) {
-        transform: scale(1.05);
-        transition-duration: 0.8s;
-      }
-    }
+  &__content {
+    // transform: translateZ(0px);
   }
 
   &--empty {

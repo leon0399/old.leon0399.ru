@@ -108,8 +108,6 @@ img[lazy='loading'] {
 
   .case__hope {
     position: absolute;
-    will-change: transform;
-    transition: transform 0.3s ease;
 
     width: 235.13px;
     height: 87.14px;
@@ -117,13 +115,11 @@ img[lazy='loading'] {
     left: calc(50% - 235.13px / 2 - 45.01px);
     top: 19.43px;
 
-    transform: rotate(-35.29deg);
+    transform: rotate(-35.29deg) translateZ(30px);
   }
 
   .case__empathy {
     position: absolute;
-    will-change: transform;
-    transition: transform 0.3s ease;
 
     width: 235.03px;
     height: 87.18px;
@@ -131,18 +127,7 @@ img[lazy='loading'] {
     left: calc(50% - 235.03px / 2 + 39.09px);
     top: calc(50% - 87.18px / 2 - 59.83px);
 
-    transform: rotate(-14.72deg);
-  }
-
-  &:hover {
-    .case__hope {
-      transform: rotate(-35.29deg) scale(1.05);
-      transition-duration: 0.8s;
-    }
-    .case__empathy {
-      transform: rotate(-14.72deg) scale(1.05);
-      transition-duration: 0.8s;
-    }
+    transform: rotate(-14.72deg) translateZ(40px);
   }
 }
 </style>

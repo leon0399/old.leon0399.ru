@@ -43,7 +43,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/vue-lazyload', ssr: false }],
+  plugins: [
+    { src: '~/plugins/vue-lazyload', ssr: false },
+    '~/plugins/vue-tilt',
+  ],
   /*
    ** Nuxt.js dev-modules
    */

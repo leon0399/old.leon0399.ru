@@ -123,13 +123,6 @@ export default {
     will-change: transform;
     transition: transform 0.3s ease;
   }
-
-  &:hover {
-    .floating-card {
-      transform: translateY(-50%) scale(1.05);
-      transition-duration: 0.8s;
-    }
-  }
 }
 
 .floating-card {
@@ -175,6 +168,8 @@ export default {
 
     left: -1rem;
     top: calc(50% - 1rem);
+
+    transform: translateY(-50%) translateZ(30px);
   }
 
   &--secondary {
@@ -185,6 +180,8 @@ export default {
 
     right: -1.5rem;
     top: calc(50% + 1rem);
+
+    transform: translateY(-50%) translateZ(40px);
   }
 }
 </style>
