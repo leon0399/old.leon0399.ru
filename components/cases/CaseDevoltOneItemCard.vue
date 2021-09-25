@@ -181,7 +181,7 @@ export default {
     right: -1.5rem;
     top: calc(50% + 1rem);
 
-    transform: translateY(-50%) translateZ(40px);
+    transform: translateY(-50%) translateZ(45px);
   }
 }
 </style>

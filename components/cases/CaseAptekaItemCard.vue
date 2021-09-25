@@ -100,6 +100,15 @@ img[lazy='loading'] {
 
 .case--apteka {
   background-color: #c80000;
+  background-position: top;
+  background-size: cover;
+  background-image: url('~/assets/img/cases/apteka149/background.png?size=283');
+  background-image: image-set(
+    url('~/assets/img/cases/apteka149/background.png?size=283') 1x,
+    url('~/assets/img/cases/apteka149/background.png?size=566') 2x,
+    url('~/assets/img/cases/apteka149/background.png?size=849') 3x
+  );
+
   color: #ffffff;
   box-shadow: 0px 20px 120px rgba(#c80000, 0.1);
 
@@ -127,7 +136,7 @@ img[lazy='loading'] {
     left: calc(50% - 235.03px / 2 + 39.09px);
     top: calc(50% - 87.18px / 2 - 59.83px);
 
-    transform: rotate(-14.72deg) translateZ(40px);
+    transform: rotate(-14.72deg) translateZ(45px);
   }
 }
 </style>
