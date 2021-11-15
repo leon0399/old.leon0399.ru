@@ -51,7 +51,7 @@
     "postcss": "^7",
     "prettier": "^2.4.1",
     "responsive-loader": "^2.3.0",
-    "sharp": "^0.29.1",
+    "sharp": "^0.29.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "webp-loader": "^0.6.0"
   }
